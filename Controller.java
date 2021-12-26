@@ -13,7 +13,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.util.regex.*;
-
+import java.util.regex.Pattern;
 public class Controller {
 
     @FXML
@@ -79,17 +79,17 @@ public class Controller {
     public void email_validation(){
         StringBuilder sb = new StringBuilder();
         for(var x:Textarea.getText().split("[\n ]"))
-            if(x.matches("(([a-zA-Z]([-._]?[a-zA-Z0-9])*)@([a-zA-Z]([-._]?[a-zA-Z0-9])*))")) sb.append(x).append("\n");
+            if(x.matches("(([a-zA-Z]([-._]?[a-zA-Z0-9])*)@([a-zA-Z]([-._]?[a-zA-Z0-9])+))(?:[,;:])")) sb.append(x).append("\n");
         results.setText(sb.toString().isEmpty()?"no email found":sb.toString());
-        
 
-        
-
-
-   
-
-            
+         
 
 
+    }
+
+
+    public void lexical_analyser(){
+        Pattern identificateur = Pattern.compile("\\w");
+        Pattern operateur = Pattern.compile("(=|+|-|/|*)");
     }
 }
