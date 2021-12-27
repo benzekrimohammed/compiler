@@ -89,7 +89,11 @@ public class Controller {
 
 
     public void lexical_analyser(){
-        Pattern identificateur = Pattern.compile("\\w");
+        Pattern identificateur = Pattern.compile("[A-z]\\w+");
+        Pattern motclé= Pattern.compile("if|else|int|float|const|char|scanf|print|return");
+        Pattern constant= Pattern.compile("\\d+|\"\\w+\"");
         Pattern operateur = Pattern.compile("(=|+|-|/|*)");
+        Pattern symbol = Pattern.compile("(;|(|)|,|.|)|{|}|\"|==|!=|?|&|&&|\\|\\|");
+      
     }
 }
