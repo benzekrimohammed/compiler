@@ -40,5 +40,7 @@
         </items>
       </SplitPane>
       <Button layoutX="493.0" layoutY="491.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Compiler" />
+      <Button fx:id="LexicalAnalyser" layoutX="397.0" layoutY="482.0" mnemonicParsing="false" onAction="#lexical_analyser" prefHeight="44.0" prefWidth="77.0" text="Lexical analyser" wrapText="true" />
+      <Button layoutX="293.0" layoutY="482.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="92.0" text="syntaxical analyser " wrapText="true" />
    </children>
 </Pane>

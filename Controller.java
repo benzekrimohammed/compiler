@@ -4,17 +4,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.regex.*;
 import java.util.regex.Pattern;
 public class Controller {
+    @FXML
+    private Button LexicalAnalyser;
 
     @FXML
     private TextArea Textarea;
@@ -90,10 +97,41 @@ public class Controller {
 
     public void lexical_analyser(){
         Pattern identificateur = Pattern.compile("[A-z]\\w+");
-        Pattern motclé= Pattern.compile("if|else|int|float|const|char|scanf|print|return");
-        Pattern constant= Pattern.compile("\\d+|\"\\w+\"");
-        Pattern operateur = Pattern.compile("(=|+|-|/|*)");
-        Pattern symbol = Pattern.compile("(;|(|)|,|.|)|{|}|\"|==|!=|?|&|&&|\\|\\|");
-      
+        Pattern motcle= Pattern.compile("if|else|int|float|const|char|scanf|printf|return");
+        Pattern constant= Pattern.compile("\\d+|(\"[\\s\\S]+\")");
+        Pattern operateur = Pattern.compile("(=|\\+|-|/|\\*|%)");
+        Pattern symbol = Pattern.compile("(;|(|)|,|\\.|)|\\{|\\}|\"|==|!=|\\?|&|&&|\\|\\|\\[|\\]");
+        String Text = Textarea.getText();
+        List<String> identificateurTK= new ArrayList<String>();
+        List<String> motcleTK= new ArrayList<String>();
+        List<String> constantTK= new ArrayList<String>();
+        List<String> opterateurTK= new ArrayList<String>();
+        List<String> symbolTK= new ArrayList<String>();
+    
+        BiConsumer<List<String>,Pattern> looker=( list, p)-> {
+            Matcher m = p.matcher(Text);
+            while(m.find())
+                try {
+                    list.add(m.group());
+                } catch (Exception e) {
+                    return;
+                }
+                
+        };
+        
+        looker.accept(identificateurTK, identificateur);
+        looker.accept(motcleTK, motcle);
+        looker.accept(constantTK, constant);
+        looker.accept(opterateurTK, operateur);
+        looker.accept(symbolTK, symbol);
+        System.out.println(identificateurTK);
+        System.out.println(motcleTK);
+        System.out.println(constantTK);
+        System.out.println(opterateurTK);
+        System.out.println(symbolTK);
+
     }
+
+
 }
+
