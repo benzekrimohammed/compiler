@@ -1,1 +1,3 @@
-mmmmm
+int a= 12
+char b[]="hello"
+printf("%s mr %d",b,a);

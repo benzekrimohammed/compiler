@@ -98,9 +98,9 @@ public class Controller {
     public void lexical_analyser(){
         Pattern identificateur = Pattern.compile("[A-z]\\w+");
         Pattern motcle= Pattern.compile("if|else|int|float|const|char|scanf|printf|return");
-        Pattern constant= Pattern.compile("\\d+|(\"[\\s\\S]+\")");
+        Pattern constant= Pattern.compile("\\d+|(\"[\\s\\S]+?\")");
         Pattern operateur = Pattern.compile("(=|\\+|-|/|\\*|%)");
-        Pattern symbol = Pattern.compile("(;|(|)|,|\\.|)|\\{|\\}|\"|==|!=|\\?|&|&&|\\|\\|\\[|\\]");
+        Pattern symbol = Pattern.compile(";|\\(|\\)|,|\\.|\\{|\\}|\"|==|!=|\\?|&|&&|(\\|\\|)|\\[|\\]");
         String Text = Textarea.getText();
         List<String> identificateurTK= new ArrayList<String>();
         List<String> motcleTK= new ArrayList<String>();
