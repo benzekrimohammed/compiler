@@ -96,14 +96,14 @@ public class Controller {
 
 
     public void lexical_analyser(){
-        Pattern identificateur = Pattern.compile("[A-z]\\w+");
         Pattern motcle= Pattern.compile("if|else|int|float|const|char|scanf|printf|return");
+        Pattern identificateur = Pattern.compile("([A-z]\\w+)");
         Pattern constant= Pattern.compile("\\d+|(\"[\\s\\S]+?\")");
         Pattern operateur = Pattern.compile("(=|\\+|-|/|\\*|%)");
         Pattern symbol = Pattern.compile(";|\\(|\\)|,|\\.|\\{|\\}|\"|==|!=|\\?|&|&&|(\\|\\|)|\\[|\\]");
         String Text = Textarea.getText();
         List<String> identificateurTK= new ArrayList<String>();
-        List<String> motcleTK= new ArrayList<String>();
+        List<String> motcleTK= new ArrayList<String>();     
         List<String> constantTK= new ArrayList<String>();
         List<String> opterateurTK= new ArrayList<String>();
         List<String> symbolTK= new ArrayList<String>();
@@ -111,7 +111,7 @@ public class Controller {
         BiConsumer<List<String>,Pattern> looker=( list, p)-> {
             Matcher m = p.matcher(Text);
             while(m.find())
-                try {
+                try { 
                     list.add(m.group());
                 } catch (Exception e) {
                     return;
